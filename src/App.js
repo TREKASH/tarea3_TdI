@@ -9,7 +9,7 @@ function App() {
         <div className="App">
             <h1>Chatbot</h1>
             <Chatbot />
-            <h1>Film Gallery</h1>
+            <h1>Peliculas disponibles para chatear</h1>
             <Photos />
         </div>
     );

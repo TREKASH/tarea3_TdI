@@ -8,6 +8,7 @@ const API_URL = 'https://tarea-3-trekash.onrender.com';  // Cambia a la URL de t
 function Chatbot() {
     const [messages, setMessages] = useState([]);  // Almacena el historial de mensajes
     const [input, setInput] = useState('');  // Almacena el mensaje del usuario
+    const [isLoading, setIsLoading] = useState(false);  // Estado para mostrar el mensaje de carga
 
     const sendMessage = async () => {
         if (!input.trim()) return;
@@ -15,6 +16,9 @@ function Chatbot() {
         // Añadir el mensaje del usuario al historial
         setMessages([...messages, { text: input, sender: 'user' }]);
         
+        // Establecer isLoading a true para mostrar el mensaje de carga
+        setIsLoading(true);
+
         try {
             // Solicitud a la API con el mensaje del usuario
             const response = await axios.post(`${API_URL}/api/chatbot`, { query: input });
@@ -30,6 +34,8 @@ function Chatbot() {
             ]);
         }
         
+        // Establecer isLoading a false después de recibir la respuesta
+        setIsLoading(false);
         setInput('');  // Limpiar el campo de entrada
     };
 
@@ -51,6 +57,12 @@ function Chatbot() {
                         <span>{msg.text}</span>
                     </div>
                 ))}
+                {/* Mostrar el mensaje de carga si isLoading es true */}
+                {isLoading && (
+                    <div className="message bot">
+                        <span>Cargando respuesta...toma 1 a 2 minutos</span>
+                    </div>
+                )}
             </div>
             <input
                 type="text"
@@ -58,8 +70,9 @@ function Chatbot() {
                 onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
                 placeholder="Escribe tu mensaje..."
+                disabled={isLoading}  // Deshabilitar el input mientras se espera la respuesta
             />
-            <button onClick={sendMessage}>Enviar</button>
+            <button onClick={sendMessage} disabled={isLoading}>Enviar</button>
         </div>
     );
 }
