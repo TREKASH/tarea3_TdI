@@ -8,7 +8,7 @@ const Photos = () => {
       {[...Array(10)].map((_, index) => (
         <img
           key={index}
-          src={`${process.env.PUBLIC_URL}photo${index + 1}.jpg`}
+          src={`${process.env.PUBLIC_URL}/photo${index + 1}.jpg`} // Añadido '/' al inicio
           alt={`photo ${index + 1}`}
           className="grid-image"
         />
