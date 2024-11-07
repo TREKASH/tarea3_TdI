@@ -6,7 +6,7 @@ build/
 dist/
 
 # Public images that may not need to be versioned (optional, if they're large or not needed in the repo)
-public/photo*.jpg
+
 
 # Environment variables
 .env
