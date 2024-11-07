@@ -1,0 +1,28 @@
+# Node modules
+node_modules/
+
+# Compiled build folder
+build/
+dist/
+
+# Public images that may not need to be versioned (optional, if they're large or not needed in the repo)
+public/photo*.jpg
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Log files
+*.log
+
+# System files
+.DS_Store
+
+# Editor and IDE settings
+.vscode/
+.idea/
+
+# Testing and configuration files
+coverage/
+*.test.js
